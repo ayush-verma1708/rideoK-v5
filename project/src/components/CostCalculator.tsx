@@ -1,5 +1,5 @@
 import { Route, Vehicle, Passenger } from '../types';
-import { IndianRupee, Route as RouteIcon, Users, Car, PieChart, TrendingDown, Map } from 'lucide-react';
+import { IndianRupee,  Users, Car,  Map } from 'lucide-react';
 
 interface CostCalculatorProps {
   route: Route;

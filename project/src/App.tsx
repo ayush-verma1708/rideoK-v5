@@ -6,8 +6,14 @@ import PassengerForm from './components/PassengerForm';
 import CostCalculator from './components/CostCalculator';
 
 function App() {
+  const defaultVehicle: Vehicle = {
+    averageMileage: 13, // Default value set to 13
+    fuelPrice: 100, // Example default value, you can adjust it
+  };
   const [route, setRoute] = useState<Route | null>(null);
-  const [vehicle, setVehicle] = useState<Vehicle | null>(null);
+  // const [vehicle, setVehicle] = useState<Vehicle | null>(null);
+  const [vehicle, setVehicle] = useState<Vehicle | null>(defaultVehicle); // Set default vehicle
+ 
   const [passengers, setPassengers] = useState<Passenger[]>([]);
 
   const handleAddPassenger = (passenger: Passenger) => {
