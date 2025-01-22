@@ -221,7 +221,7 @@ export default function PassengerForm({
       dropLocation: resolvedDrop,
       cost: 0, // You'll calculate the cost as per your logic
     };
-    await axios.post(`http://localhost:5000/api/rides/${rideId}/passenger`, newPassenger);
+    await axios.post(`https://rideok-v5.onrender.com/api/rides/${rideId}/passenger`, newPassenger);
 
     await calculateOptimizedCost(resolvedPickup, resolvedDrop);
   };

@@ -24,7 +24,7 @@ axiosInstance.interceptors.response.use(undefined, async (err) => {
   return axiosInstance(config);
 });
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://rideok-v5.onrender.com/api';
 
 // Helper function to handle API errors
 const handleApiError = (error: any) => {
@@ -103,7 +103,7 @@ export const api = {
   
       // Log location data for both start and end locations
   
-      const routeResponse = await axios.get('http://localhost:5000/api/directions', {
+      const routeResponse = await axios.get('https://rideok-v5.onrender.com/api/directions', {
         params: {
           start: `${startLocData.lon},${startLocData.lat}`,
           end: `${endLocData.lon},${endLocData.lat}`,

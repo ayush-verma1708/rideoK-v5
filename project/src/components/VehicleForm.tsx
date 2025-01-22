@@ -67,7 +67,7 @@ export default function VehicleForm({ onVehicleSubmit }: VehicleFormProps) {
       }
   
       // Make API call to update the ride vehicle details
-       await axios.put(` http://localhost:5000/api/rides/${rideId}/vehicle`, vehicleData);
+       await axios.put(` https://rideok-v5.onrender.com/api/rides/${rideId}/vehicle`, vehicleData);
      
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to submit vehicle details';

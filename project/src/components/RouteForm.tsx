@@ -79,7 +79,7 @@ const calculateDistance = async () => {
     const distanceInMeters = response.data.features[0].properties.segments[0].distance;
     const distanceInKm = distanceInMeters / 1000;
   // Send the data to the backend to store it
-  const ride_Info = await axios.post(' http://localhost:5000/api/rides', {
+  const ride_Info = await axios.post(' https://rideok-v5.onrender.com/api/rides', {
     startLocation: {
       lat: startCoords.lat,
       lng: startCoords.lon,

@@ -28,7 +28,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
 
     try {
       // Make API call to submit feedback
-      await axios.post('http://localhost:5000/api/feedback', feedbackData);
+      await axios.post('https://rideok-v5.onrender.com/api/feedback', feedbackData);
 
       // On success
       setSuccessMessage('Thank you for your feedback!');
