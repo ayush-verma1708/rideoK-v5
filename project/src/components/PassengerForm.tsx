@@ -184,7 +184,14 @@ export default function PassengerForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+  // Check if the rideId exists in localStorage
+  const rideId = localStorage.getItem('rideId');
 
+  // If there's no rideId in localStorage, don't send data to backend
+  if (!rideId) {
+    setError('No ride ID found. Please create a ride first.');
+    return;
+  }
      // Check if there are already 3 passengers
   if (existingPassengers.length >= 3) {
     setError('You can only add a maximum of 3 passengers.');
@@ -208,6 +215,13 @@ export default function PassengerForm({
       setError('Failed to resolve coordinates for addresses');
       return;
     }
+    const newPassenger = {
+      name,
+      pickupLocation: resolvedPickup,
+      dropLocation: resolvedDrop,
+      cost: 0, // You'll calculate the cost as per your logic
+    };
+    await axios.post(`http://localhost:5000/api/rides/${rideId}/passenger`, newPassenger);
 
     await calculateOptimizedCost(resolvedPickup, resolvedDrop);
   };

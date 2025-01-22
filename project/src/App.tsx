@@ -4,6 +4,7 @@ import RouteForm from './components/RouteForm';
 import VehicleForm from './components/VehicleForm';
 import PassengerForm from './components/PassengerForm';
 import CostCalculator from './components/CostCalculator';
+import FeedbackForm from './components/FeedbackForm';
 
 function App() {
   const defaultVehicle: Vehicle = {
@@ -69,8 +70,38 @@ function App() {
               </div>
             )}
           </div>
+        
+
         </div>
+      </div>  <footer className="bg-gray-800 text-white py-8">
+  <div className="max-w-4xl mx-auto px-6">
+    <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+      {/* Left Section: Made by */}
+      <div className="text-center md:text-left">
+        <p>
+          Made by{' '}
+          <a
+            href="https://ayush-verma1708.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:underline"
+          >
+            Ayush Verma
+          </a>
+        </p>
       </div>
+
+      {/* Right Section: Feedback Form */}
+      <div className="text-center md:text-right">
+        <FeedbackForm />
+      </div>
+    </div>
+
+    <div className="mt-6 text-center text-sm text-gray-400">
+      <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
+    </div>
+  </div>
+</footer>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import proxyRoute from './proxyRoute.js';
 import axios from 'axios';
+import feedbackRoutes from './routes/feedbackRoutes.js';
 
 dotenv.config();
 
@@ -38,6 +39,8 @@ app.use((req, res, next) => {
 app.use('/api/rides', rideRoutes);
 app.use('/api/fuel-prices', fuelPriceRoutes);
 app.use('/api', proxyRoute);
+// Use feedback routes
+app.use('/api', feedbackRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

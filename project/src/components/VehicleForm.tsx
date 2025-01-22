@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Car, Fuel } from 'lucide-react';
 import type { Vehicle } from '../types';
 import { api } from '../services/api';
+import axios from 'axios';
 
 interface VehicleFormProps {
   onVehicleSubmit: (vehicle: Vehicle) => void;
@@ -11,6 +12,7 @@ export default function VehicleForm({ onVehicleSubmit }: VehicleFormProps) {
   const [mileage, setMileage] = useState('');
   const [fuelPrice, setFuelPrice] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchFuelPrice = async () => {
@@ -29,23 +31,53 @@ export default function VehicleForm({ onVehicleSubmit }: VehicleFormProps) {
     fetchFuelPrice();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+    
+  //   try {
+  //     onVehicleSubmit({
+  //       averageMileage: parseFloat(mileage),
+  //       fuelPrice: parseFloat(fuelPrice)
+  //     });
+  //   } catch (err) {
+  //     const errorMessage = err instanceof Error ? err.message : 'Failed to submit vehicle details';
+  //     console.error('Error:', errorMessage);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+  
     try {
-      onVehicleSubmit({
-        averageMileage: parseFloat(mileage),
-        fuelPrice: parseFloat(fuelPrice)
-      });
+      // Construct the data to send for updating vehicle details
+      const vehicleData = {
+        mileage: parseFloat(mileage),
+        fuelPrice: parseFloat(fuelPrice),
+      };
+  
+      // Fetch the rideId (from localStorage or state)
+      const rideId = localStorage.getItem('rideId');
+      if (!rideId) {
+        setError('Ride ID is missing.');
+        return;
+      }
+  
+      // Make API call to update the ride vehicle details
+       await axios.put(` http://localhost:5000/api/rides/${rideId}/vehicle`, vehicleData);
+     
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to submit vehicle details';
       console.error('Error:', errorMessage);
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
   };
-
+  
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>

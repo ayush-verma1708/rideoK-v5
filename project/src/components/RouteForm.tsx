@@ -78,6 +78,28 @@ const calculateDistance = async () => {
 
     const distanceInMeters = response.data.features[0].properties.segments[0].distance;
     const distanceInKm = distanceInMeters / 1000;
+  // Send the data to the backend to store it
+  const ride_Info = await axios.post(' http://localhost:5000/api/rides', {
+    startLocation: {
+      lat: startCoords.lat,
+      lng: startCoords.lon,
+      address: locationData.startAddress
+    },
+    endLocation: {
+      lat: endCoords.lat,
+      lng: endCoords.lon,
+      address: locationData.endAddress
+    },
+    distance: distanceInKm
+  });
+
+
+    // Get the rideId from the response
+    // const rideId = ride_Info.data.id;
+
+    // Store the rideId in localStorage for future reference
+    console.log('Ride ID saved to localStorage:', ride_Info.data._id);
+    window.localStorage.setItem('rideId', ride_Info.data._id);
 
     onRouteSubmit({
       startLocation: {
@@ -158,7 +180,7 @@ const calculateDistance = async () => {
 
       <button
         type="submit"
-        disabled={loading || !locationData.startAddress || !locationData.endAddress}
+        disabled={loading || locationData.startAddress == locationData.endAddress ||!locationData.startAddress || !locationData.endAddress}
         className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50"
       >
         {loading ? 'Calculating Route...' : 'Calculate Route'}

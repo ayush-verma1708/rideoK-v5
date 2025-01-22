@@ -2,38 +2,38 @@ import mongoose from 'mongoose';
 
 const rideSchema = new mongoose.Schema({
   startLocation: {
-    lat: { type: Number, required: true },
-    lng: { type: Number, required: true },
-    address: { type: String, required: true }
+    lat: { type: Number,  },
+    lng: { type: Number,  },
+    address: { type: String,  }
   },
   endLocation: {
-    lat: { type: Number, required: true },
-    lng: { type: Number, required: true },
-    address: { type: String, required: true }
+    lat: { type: Number,  },
+    lng: { type: Number,  },
+    address: { type: String,  }
   },
-  distance: { type: Number, required: true },
+  distance: { type: Number,  },
   passengers: [{
-    id: { type: String, required: true },
-    name: { type: String, required: true },
+    id: { type: String,  },
+    name: { type: String,  },
     pickupLocation: {
-      lat: { type: Number, required: true },
-      lng: { type: Number, required: true },
-      address: { type: String, required: true }
+      lat: { type: Number,  },
+      lng: { type: Number,  },
+      address: { type: String,  }
     },
     dropLocation: {
-      lat: { type: Number, required: true },
-      lng: { type: Number, required: true },
-      address: { type: String, required: true }
+      lat: { type: Number,  },
+      lng: { type: Number,  },
+      address: { type: String,  }
     },
-    distance: { type: Number, required: true },
-    cost: { type: Number, required: true }
+    distance: { type: Number,  },
+    cost: { type: Number,  }
   }],
   vehicle: {
-    averageMileage: { type: Number, required: true },
-    fuelPrice: { type: Number, required: true }
+    averageMileage: { type: Number,  },
+    fuelPrice: { type: Number,  }
   },
-  totalCost: { type: Number, required: true },
-  costPerPerson: { type: Number, required: true },
+  totalCost: { type: Number,  },
+  costPerPerson: { type: Number,  },
   createdAt: { type: Date, default: Date.now }
 });
 

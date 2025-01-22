@@ -18,6 +18,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
+    "font-awesome": "^4.7.0",
+    "html2canvas": "^1.4.1",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.344.0",
     "mapbox-gl": "^2.15.0",
